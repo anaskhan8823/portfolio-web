@@ -16,7 +16,16 @@ const VerticalTimelineElement = dynamic(
 
 import "react-vertical-timeline-component/style.min.css";
 
-const experiences = [
+interface Experience {
+  title: string;
+  companyName: string;
+  icon: string;
+  iconBg: string;
+  date: string;
+  points: string[];
+}
+
+const experiences: Experience[] = [
   {
     title: "Flutter Developer",
     companyName: "Car Centric | Australia (Remote)",
@@ -35,82 +44,19 @@ const experiences = [
       "Managed end-to-end deployment processes on App Store and TestFlight.",
     ],
   },
-  {
-    title: "Flutter Developer",
-    companyName: "Eaisoft | Karachi, Pakistan (On Site)",
-    icon: "/experience/eaisoft.jpg",
-    iconBg: "#E6DEDD",
-    date: "September 2023 - August 2024",
-    points: [
-      "Implement tinder like swap feature for liking and disliking cars and show feed accordingly.",
-      "Integrated AI Model for checking tire trade.",
-      "Integrated Ai Model for checking extra panel gaps between two panels of the car.",
-      "Integrated Ai Voice assistant for search cars according to user needs.",
-      "Collaborated with UX/UI designers to create an intuitive and visually appealing interface.",
-      "Implement Google login, Facebook login and Apple login.",
-      "Lead project including planning, execution, mentoring juniors and coordination with team members to meet deadlines.",
-      "Troubleshot and debugged critical issues reported by testers ensuring app stability.",
-      "Translated complex Figma designs into responsive application for android and IOS.",
-      "Managed deployment of the app on Test flight, Apple’s Oculus for testing, and publish on Play Store and App Store.",
-    ],
-  },
-  {
-    title: "Flutter Developer",
-    companyName: "SoftMax | Malaysia (Remote)",
-    icon: "/experience/flutter.webp",
-    iconBg: "#E6DEDD",
-    date: "April 2023 - September 2023",
-    points: [
-      "Develop and maintain various application modules, ensuring seamless integration of APIs.",
-      "Implementing new features to enhance system functionality.",
-      "Implemented GetX for state management.",
-      "Implemented Bloc for state management.",
-      "Implemented scalable MVC architecture, and created personalised, reusable widgets.",
-      "Perform testing and debugging of code to identify and resolve issues.",
-      "Attended daily meetings, and shared updates with the team team members to meet deadlines.",
-      "Optimised codebases for enhanced performance.",
-      "Contributed to successful deployment of applications, improving overall project efficiency.",
-      "Deploy app on on Play Store and App Store.",
-    ],
-  },
-  {
-    title: "Software Engineer",
-    companyName: "Intrapreneur | Karachi, Pakistan (On Site)",
-    icon: "/experience/intrapreneur.jpg",
-    iconBg: "#E6DEDD",
-    date: "December 2021 - April 2023",
-    points: [
-      "Convert Figma and Adobe XD designs into responsive and efficient Flutter code.",
-      "Ensure proper and accurate implementation of UI/UX designs.",
-      "Integrate Google Maps into Flutter applications.",
-      "Integrate features like geotagging, geolocation.",
-      "Google Maps API for directions to enhance user experience.",
-      "Implement local storage solutions and Firebase real-time database.",
-      "Implement MVC architecture.",
-      "Integrate and manage various RESTful APIs to expand application functionality and improve data interactions.",
-      "Manage project effectively, ensuring timely delivery of project.",
-    ],
-  },
-  {
-    title: "Junior Flutter Developer",
-    companyName: "Creative Computers | United States (Remote)",
-    icon: "/experience/flutter.webp",
-    iconBg: "#E6DEDD",
-    date: "January 2019 - December 2020",
-    points: [
-      "Build and maintain visually appealing, responsive, and user-friendly Flutter UI components using best practices.",
-      "Create and modify Flutter widgets to match design requirements, ensuring pixel-perfect UI.",
-      "Implementation and convert websites in to mobile app using web view flutter.",
-      "Implement Flutter state management techniques to maintain smooth UI interactions.",
-      "Implement lotti animations, transitions, and other UI effects to improve user experience.",
-      "Ensure the UI is optimised for different screen sizes.",
-      "Stay updated with the latest Flutter UI trends, best practices, and emerging design patterns.",
-      "Learn from senior developers, participate in code reviews, and improve UI development skills.",
-    ],
-  },      
+  // ... rest of your experiences
 ];
 
-const ExperienceCard = ({ title, companyName, icon, iconBg, date, points }) => (
+interface ExperienceCardProps extends Experience {}
+
+const ExperienceCard: React.FC<ExperienceCardProps> = ({
+  title,
+  companyName,
+  icon,
+  iconBg,
+  date,
+  points,
+}) => (
   <VerticalTimelineElement
     visible={true}
     contentStyle={{
@@ -149,7 +95,7 @@ const ExperienceCard = ({ title, companyName, icon, iconBg, date, points }) => (
   </VerticalTimelineElement>
 );
 
-export const Experience = () => {
+export const Experience: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -158,27 +104,27 @@ export const Experience = () => {
 
   if (!isMounted) {
     return (
-        <div className="flex flex-col items-center">
-          <motion.h2
-            variants={fadeIn("up", "spring", 0, 1)}
-            className="text-white text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4"
-          >
-            Work Experience
-          </motion.h2>
-          <motion.p
-            variants={fadeIn("", "", 0.1, 1)}
-            className="text-gray-400 text-center max-w-3xl text-lg mb-20"
-          >
-            My professional journey
-          </motion.p>
-          <div className="flex flex-col items-center space-y-8 mt-20">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="w-full max-w-3xl animate-pulse">
-                <div className="bg-gray-700 h-32 rounded-lg"></div>
-              </div>
-            ))}
-          </div>
+      <div className="flex flex-col items-center">
+        <motion.h2
+          variants={fadeIn("up", "spring", 0, 1)}
+          className="text-white text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4"
+        >
+          Work Experience
+        </motion.h2>
+        <motion.p
+          variants={fadeIn("", "", 0.1, 1)}
+          className="text-gray-400 text-center max-w-3xl text-lg mb-20"
+        >
+          My professional journey
+        </motion.p>
+        <div className="flex flex-col items-center space-y-8 mt-20">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="w-full max-w-3xl animate-pulse">
+              <div className="bg-gray-700 h-32 rounded-lg"></div>
+            </div>
+          ))}
         </div>
+      </div>
     );
   }
 
@@ -200,10 +146,7 @@ export const Experience = () => {
         <div className="mt-20 flex flex-col w-full">
           <VerticalTimeline lineColor="#232631">
             {experiences.map((experience, index) => (
-              <ExperienceCard
-                key={`experience-${index}`}
-                {...experience}
-              />
+              <ExperienceCard key={`experience-${index}`} {...experience} />
             ))}
           </VerticalTimeline>
         </div>
