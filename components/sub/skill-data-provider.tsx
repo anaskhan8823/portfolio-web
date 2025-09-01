@@ -40,6 +40,7 @@ export const SkillDataProvider = ({
       transition={{ delay: index * animationDelay }}
     >
       <Image src={`/skills/${src}`} width={width} height={height} alt={name} />
+
     </motion.div>
   );
 };
