@@ -1,4 +1,14 @@
+export type TMotion = {
+  direction?: "up" | "down" | "left" | "right" | "";
+  type?: "spring" | "tween" | "";
+  delay?: number;
+  duration?: number;
+};
+
+
+
 import { Variants } from "framer-motion";
+
 
 
 
