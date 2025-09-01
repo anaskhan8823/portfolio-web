@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import React from "react";
 import { FOOTER_DATA } from "@/constants";
 
 export const Footer = () => {
@@ -13,16 +13,18 @@ export const Footer = () => {
               className="min-w-[200px] h-auto flex flex-col items-center justify-start"
             >
               <h3 className="font-bold text-[16px]">{column.title}</h3>
-              {column.data.map(({ icon: Icon, name, link }) => (
+              {column.data.map(({ icon: Icon, name, link }, index) => (
                 <Link
-                  key={`${column.title}-${name}`}
-                  href={link}
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  key={`${column.title}-${name}-${index}`}
+                  href={link || "#"} // fallback if link is empty
+                  target={link ? "_blank" : undefined}
+                  rel={link ? "noreferrer noopener" : undefined}
                   className="flex flex-row items-center my-[15px]"
                 >
-                  {Icon && <Icon />}
-                  <span className="text-[15px] ml-[6px]">{name}</span>
+                  {Icon && <Icon className="w-5 h-5 text-gray-200" />}
+                  <span className={`text-[15px] ml-[6px] ${!link && "cursor-default"}`}>
+                    {name}
+                  </span>
                 </Link>
               ))}
             </div>

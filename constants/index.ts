@@ -1,4 +1,5 @@
 import { FaYoutube, FaFacebook } from "react-icons/fa";
+import { ComponentType } from "react";
 import {
   RxDiscordLogo,
   RxGithubLogo,
@@ -262,39 +263,36 @@ export const PROJECTS = [
     link: "https://example.com",
   },
 ] as const;
+type FooterItem = {
+  name: string;
+  icon: ComponentType<any> | null; // React component or null
+  link: string;
+};
+type FooterColumn = {
+  title: string;
+  data: FooterItem[];
+};
 
-export const FOOTER_DATA = [
+export const FOOTER_DATA: FooterColumn[] = [
   {
     title: "Contact",
     data: [
-      {
-        name: "+966530513564",
-        icon: null,
-        link: "tel:+966530513564",
-      }
+      { name: "+966530513564", icon: null, link: "tel:+966530513564" },
     ],
   },
   {
     title: "Email Address",
     data: [
-      {
-        name: "anaskhan8823@gmail.com",
-        icon: null,
-        link: "mailto:anaskhan8823@gmail.com",
-      }
+      { name: "anaskhan8823@gmail.com", icon: null, link: "mailto:anaskhan8823@gmail.com" },
     ],
   },
   {
     title: "Location",
     data: [
-      {
-        name: "Jeddah, Saudi Arabia",
-        icon: null,
-        link: '',
-      }
+      { name: "Jeddah, Saudi Arabia", icon: null, link: "" },
     ],
   },
-] as const;
+];
 
 export const NAV_LINKS = [
   {
